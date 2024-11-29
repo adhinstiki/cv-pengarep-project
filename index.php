@@ -288,7 +288,7 @@
                         <img class="project-img w-100" src="assets/images/project-3.jpg" alt="Project Image">
                     </div>
                     <h1>Contemporary City Home Interior</h1>
-                    <p>Sleek, minimalist urban living space.r</p>
+                    <p>Sleek, minimalist urban living space</p>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -297,7 +297,7 @@
                         <img class="project-img w-100" src="assets/images/project-4.jpg" alt="Project Image">
                     </div>
                     <h1>Downtown Private Home Renovation</h1>
-                    <p>Elegant design with urban flair.r</p>
+                    <p>Elegant design with urban flair</p>
                 </div>
             </div>
         </div>
@@ -445,7 +445,7 @@
                  <div class="col-lg-4 col-md-4 col-sm-12 footer-right">
                      <h4>Contact Us</h4>
                      <p>Phone: +888 (123) 869523</p>
-                     <p>Email: <a href="mailto:example@gmail.com">example@gmail.com</a></p>
+                     <p>Email: cvpengarep@gmail.com</p>
                      <p>Location: Bali Indonesia</p>
                  </div>
              </div>
@@ -476,39 +476,6 @@
 
     <!-- MAIN JS -->
      <script src="js/main.js"></script>
-
-     <!-- SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.10/dist/sweetalert2.min.js"></script>
-    
-    <script>
-        // Cek status di URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const status = urlParams.get('status');
-        
-        // Jika status = 'success', tampilkan toast sukses
-        if (status === 'success') {
-            Swal.fire({
-                icon: 'success',
-                title: 'Data Berhasil Terkirim!',
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-            });
-        }
-        
-        // Jika status = 'error', tampilkan toast error
-        if (status === 'error') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Terjadi Kesalahan!',
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-            });
-        }
-    </script>
 </body>
 
 </html>
