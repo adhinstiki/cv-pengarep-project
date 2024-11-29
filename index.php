@@ -446,7 +446,7 @@
                      <h4>Contact Us</h4>
                      <p>Phone: +888 (123) 869523</p>
                      <p>Email: <a href="mailto:example@gmail.com">example@gmail.com</a></p>
-                     <p>Location: 1058 Helton Ave, Berlin</p>
+                     <p>Location: Bali Indonesia</p>
                  </div>
              </div>
         </div>

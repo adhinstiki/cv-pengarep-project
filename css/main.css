@@ -741,3 +741,8 @@ footer {
 .footer-bottom ul li a:hover {
     color: var(--primary-color);
 }
+
+.footer-right p a {
+    color: white;
+    text-decoration: none;
+}
