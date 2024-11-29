@@ -348,7 +348,7 @@
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card">
-                    <img src="assets/images/team-member1.jpg" alt="Team Member 1" class="card-img-top" style="height: 200px; object-fit: cover;">
+                    <img src="assets/images/team-1.png" alt="Team Member 1" class="card-img-top" style="height: 200px; object-fit: cover;">
                     <div class="card-body">
                         <h5 class="card-title">Adhi Purnawan</h5>
                         <p class="card-text">Software Engineer</p>
@@ -357,7 +357,7 @@
             </div>
             <div class="col">
                 <div class="card">
-                    <img src="assets/images/team-member2.jpg" alt="Team Member 2" class="card-img-top" style="height: 200px; object-fit: cover;">
+                    <img src="assets/images/team-3.jpg" alt="Team Member 2" class="card-img-top" style="height: 200px; object-fit: cover;">
                     <div class="card-body">
                         <h5 class="card-title">Erdy Erisa</h5>
                         <p class="card-text">Project Manager</p>
@@ -366,7 +366,7 @@
             </div>
             <div class="col">
                 <div class="card">
-                    <img src="assets/images/team-member3.jpg" alt="Team Member 3" class="card-img-top" style="height: 200px; object-fit: cover;">
+                    <img src="assets/images/team-2.png" alt="Team Member 3" class="card-img-top" style="height: 200px; object-fit: cover;">
                     <div class="card-body">
                         <h5 class="card-title">Carl Aris</h5>
                         <p class="card-text">Web Developer</p>
