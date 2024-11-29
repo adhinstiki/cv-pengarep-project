@@ -404,6 +404,11 @@
                     </div>
                 </form>
             </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <iframe class="google-location"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.024853074431!2d100.24585701531467!3d-0.20932389999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df6e9f3482b2775%3A0xf7d43d68ef238014!2sJl.%20Sultan%20Agung%2C%20Denpasar%2C%20Bali!5e0!3m2!1sen!2sid!4v1636499501687!5m2!1sen!2sid"
+                    width="600" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
         </div>
     </div>
     <!-- CONTACT US -->

@@ -334,7 +334,7 @@ button {
 
 .section-title {
     text-align: center;
-    margin-top: 5rem;
+    margin-top: 8rem;
     margin-bottom: 5rem;
 }
 
@@ -435,6 +435,11 @@ button {
     margin-bottom: 0;
 }
 
+.contact-section {
+    margin-top: 8rem;
+    margin-bottom: 8rem;
+}
+
 .form-group {
     margin-bottom: 15px;
 }
@@ -461,6 +466,11 @@ button {
 
 .form-group button:hover {
     background-color: black;
+}
+
+.google-location {
+    width: 100%;
+    padding-left: 2rem;
 }
 
 @media (max-width: 767px) {
@@ -514,6 +524,11 @@ button {
 
     .project-list-item {
         text-align: center !important;
+    }
+
+    .google-location {
+        padding-left: 0 !important;
+        padding-top: 2rem !important;
     }
     
   }
