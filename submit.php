@@ -7,7 +7,7 @@ $phone = $conn->real_escape_string($_POST['phone']);
 $subject = $conn->real_escape_string($_POST['subject']);
 $message = $conn->real_escape_string($_POST['message']);
 
-$sql = "INSERT INTO `orders` (name, email, phone, subject, message) 
+$sql = "INSERT INTO `order` (name, email, phone, subject, message) 
         VALUES ('$name', '$email', '$phone', '$subject', '$message')";
 
 $conn->query($sql);

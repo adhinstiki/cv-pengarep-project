@@ -2,7 +2,7 @@
 $host = 'localhost'; 
 $user = 'root';      
 $password = '';     
-$db_name = 'company_profile'; 
+$db_name = 'cv_pengarep'; 
 
 $conn = new mysqli($host, $user, $password, $db_name);
 
