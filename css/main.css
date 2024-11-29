@@ -204,6 +204,10 @@ button {
     transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
+.sidebar-social-media-item a {
+    color: white;
+}
+
 .sidebar-social-media-item:hover {
     transform: translateY(-3px);
     background-color: var(--primary-color);
@@ -211,7 +215,7 @@ button {
 }
 
 .about-us-section {
-    padding: 7rem 0;
+    padding: 7rem 0 4rem 0;
 }
 
 .hero-container {
@@ -276,8 +280,11 @@ button {
 
 .social-media-item {
     padding: 0.8rem 0;
-    color: white;
     font-size: 1.2rem;
+}
+
+.social-media-item a {
+    color: white;
 }
 
 

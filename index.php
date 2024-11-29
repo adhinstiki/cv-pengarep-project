@@ -98,10 +98,10 @@
             <h1>Subscribe & Follow</h1>
             <p>The scallops were perfectly cooked, tender, and flavorful, paired beautifully with a creamy risotto and seasonal vegetables. The presentation was artful, showcasing the chefs attention to detail.</p>
             <ul class="sidebar-social-media">
-                <li class="sidebar-social-media-item"><i class="bi bi-facebook"></i></li>
-                <li class="sidebar-social-media-item"><i class="bi bi-twitter-x"></i></li>
-                <li class="sidebar-social-media-item"><i class="bi bi-instagram"></i></li>
-                <li class="sidebar-social-media-item"><i class="bi bi-linkedin"></i></li>
+                <li class="sidebar-social-media-item"><a href="https://facebook.com"><i class="bi bi-facebook"></i></a></li>
+                <li class="sidebar-social-media-item"><a href="https://twitter.com"><i class="bi bi-twitter-x"></i></a></li>
+                <li class="sidebar-social-media-item"><a href="https://instagram.com"><i class="bi bi-instagram"></i></a></li>
+                <li class="sidebar-social-media-item"><a href="https://linkedin.com"><i class="bi bi-linkedin"></i></a></li>
             </ul>
         </div>
     </div>
@@ -130,10 +130,10 @@
                 <div class="about-us-cover">
                     <img class="about-us-img w-100" src="assets/images/about.jpg" alt="">
                     <ul class="social-media-list">
-                        <li class="social-media-item"><i class="bi bi-facebook"></i></li>
-                        <li class="social-media-item"><i class="bi bi-twitter-x"></i></li>
-                        <li class="social-media-item"><i class="bi bi-instagram"></i></li>
-                        <li class="social-media-item"><i class="bi bi-linkedin"></i></li>
+                        <li class="social-media-item"><a href="https://facebook.com"><i class="bi bi-facebook"></i></a></li>
+                        <li class="social-media-item"><a href="https://twitter.com"><i class="bi bi-twitter-x"></i></a></li>
+                        <li class="social-media-item"><a href="https://instagram.com"><i class="bi bi-instagram"></i></a></li>
+                        <li class="social-media-item"><a href="https://linkedin.com"><i class="bi bi-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>
