@@ -1,34 +1,40 @@
+// Fungsi untuk menutup sidebar
+function closeSidebar() {
+    document.querySelector('.sidebar-off-canvas').classList.remove('open');
+    document.getElementById('overlay').classList.remove('show');
+}
+
+// Event listener untuk tombol toggle sidebar
 document.getElementById('btnToggle').addEventListener('click', function() {
-    // Menambahkan class 'open' ke sidebar dan 'show' ke overlay
     document.querySelector('.sidebar-off-canvas').classList.add('open');
     document.getElementById('overlay').classList.add('show');
 });
 
-document.getElementById('btnClose').addEventListener('click', function() {
-    // Menghapus class 'open' dari sidebar dan 'show' dari overlay
-    document.querySelector('.sidebar-off-canvas').classList.remove('open');
-    document.getElementById('overlay').classList.remove('show');
+// Event listener untuk tombol close sidebar
+document.getElementById('btnClose').addEventListener('click', closeSidebar);
+
+// Event listener untuk overlay
+document.getElementById('overlay').addEventListener('click', closeSidebar);
+
+// Event listener untuk semua elemen <li> di sidebar
+document.querySelectorAll('.sidebar-content .nav-item').forEach(function(item) {
+    item.addEventListener('click', closeSidebar);
 });
 
-// Menambahkan aksi klik pada overlay untuk menutup sidebar
-document.getElementById('overlay').addEventListener('click', function() {
-    document.querySelector('.sidebar-off-canvas').classList.remove('open');
-    document.getElementById('overlay').classList.remove('show');
-});
 
 
 // SCROLL PAGE
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', function (e) {
-        e.preventDefault(); // Mencegah aksi default klik link
-        const targetId = this.getAttribute('href').substring(1); // Ambil ID target
-        const targetSection = document.getElementById(targetId); // Dapatkan elemen target
+        e.preventDefault(); 
+        const targetId = this.getAttribute('href').substring(1); 
+        const targetSection = document.getElementById(targetId); 
         if (targetSection) {
-            const offset = 130; // Sesuaikan tinggi offset (tinggi navbar + padding tambahan)
+            const offset = 130; 
             const targetPosition = targetSection.offsetTop - offset;
             window.scrollTo({
                 top: targetPosition,
-                behavior: 'smooth' // Animasi smooth scrolling
+                behavior: 'smooth' 
             });
         }
     });

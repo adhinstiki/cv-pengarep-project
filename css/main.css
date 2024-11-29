@@ -63,6 +63,10 @@ button {
     text-transform: uppercase;
 }
 
+.nav-link:focus {
+    color: white !important;
+}
+
 .bar {
     display: block;
     width: 30px; 
@@ -649,7 +653,6 @@ footer {
     justify-content: center;
     padding-top: 2rem;
     align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-left, .footer-center, .footer-right {
@@ -682,7 +685,7 @@ footer {
 }
 
 .footer-center ul li a:hover {
-    color: #f39c12;
+    color: var(--primary-color);
 }
 
 .footer-right ul {
@@ -700,7 +703,7 @@ footer {
 }
 
 .footer-right ul li a:hover {
-    color: #f39c12;
+    color: var(--primary-color);
 }
 
 /* Footer Bottom Styling */
@@ -736,5 +739,5 @@ footer {
 }
 
 .footer-bottom ul li a:hover {
-    color: #f39c12;
+    color: var(--primary-color);
 }

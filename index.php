@@ -48,10 +48,10 @@
                         <a class="nav-link" href="#ourTeam">Our Team</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="benefit">Benefit</a>
+                        <a class="nav-link" href="#benefit">Benefit</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contactUs">Contact Us</a>
+                        <a class="nav-link" href="#contact">Contact Us</a>
                     </li>
                 </ul>
             </div>
@@ -73,19 +73,25 @@
         </div>
         <ul class="sidebar-content navbar-nav">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                <a class="nav-link active" aria-current="page" href="#home">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="shop.html">About Us</a>
+                <a class="nav-link" href="#aboutUs">About Us</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="blog.html">Our Service</a>
+                <a class="nav-link" href="#ourService">Our Service</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="about.html">Our Project</a>
+                <a class="nav-link" aria-current="page" href="#ourProject">Our Project</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="contact.html">Our Team</a>
+                <a class="nav-link" href="#ourTeam">Our Team</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#benefit">Benefit</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact Us</a>
             </li>
         </ul>
         <div class="sidebar-footer">
@@ -299,7 +305,7 @@
     <!-- OUR PROJECT -->
     
     <!--BENEFIT -->
-    <div class="container">
+    <div class="container" id="benefit">
         <!-- Modern Design Section -->
         <div class="container section-title" id="ourProject">
             <h2>Why Choose Us</h2>
@@ -340,7 +346,7 @@
     <!--BENEFIT -->
 
     <!-- OUR TEAM -->
-    <div class="container my-5">
+    <div class="container my-5" id="ourTeam">
         <div class="container section-title" id="ourProject">
             <h2>Our Team</h2>
             <h1>Meet Our Highly Professional Team</h1>
@@ -378,7 +384,7 @@
     <!-- OUR TEAM -->
 
     <!-- CONTACT US -->
-    <div class="container contact-section" id="ourProject">
+    <div class="container contact-section" id="contact">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <h1>Get in touchs</h1>
@@ -427,12 +433,11 @@
                  <div class="col-lg-4 col-md-4 col-sm-12  footer-center">
                      <h4>Useful Links</h4>
                      <ul>
-                         <li><a href="#">About Us</a></li>
-                         <li><a href="#">Customer Insights</a></li>
-                         <li><a href="#">Meet Our Team</a></li>
-                         <li><a href="#">Client Testimonials</a></li>
-                         <li><a href="#">Privacy Policy</a></li>
-                         <li><a href="#">Before & After</a></li>
+                         <li><a href="#aboutUs">About Us</a></li>
+                         <li><a href="#ourService">Our Service</a></li>
+                         <li><a href="#ourProject">Our Project</a></li>
+                         <li><a href="#ourTeam">Our Team</a></li>
+                         <li><a href="#benefit">Benefit</a></li>
                      </ul>
                  </div>
      
