@@ -550,6 +550,7 @@ button {
         flex-wrap: wrap !important;
         padding: 2rem 0 !important;
         margin-bottom: 0 !important;
+        text-align: center !important;
     }
 
     .service-list-item .icon {
