@@ -1,9 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 
-* {
-    overflow-x: hidden !important;
-}
-
 :root {
     --primary-font: "Outfit", sans-serif;
     --primary-color: #906e50;
@@ -16,6 +12,7 @@
 
 body {
     font-family: var(--primary-font);
+    overflow-x: hidden !important;
 }
 
 button {
@@ -733,8 +730,7 @@ footer {
 }
 
 .footer-left, .footer-center, .footer-right {
-    /* flex: 1; */
-    margin: 0 20px;
+    padding: 0 2rem;
 }
 
 .footer-left h4, .footer-center h4, .footer-right h4 {
