@@ -306,12 +306,12 @@
     <!-- OUR PROJECT -->
     
     <!--BENEFIT -->
-    <div class="container" id="benefit">
+    <div class="container section-title" id="ourProject">
+        <h2>Why Choose Us</h2>
+        <h1>Why Choose CV Pengarep</h1>
+    </div>
+    <div class="container benefit-section" id="benefit">
         <!-- Modern Design Section -->
-        <div class="container section-title" id="ourProject">
-            <h2>Why Choose Us</h2>
-            <h1>Why Choose CV Pengarep</h1>
-        </div>
         <div class="section">
             <div class="section-text-container">
                 <h2 class="section-title-text">Modern Design</h2>
@@ -347,11 +347,11 @@
     <!--BENEFIT -->
 
     <!-- OUR TEAM -->
-    <div class="container my-5" id="ourTeam">
-        <div class="container section-title" id="ourProject">
-            <h2>Our Team</h2>
-            <h1>Meet Our Highly Professional Team</h1>
-        </div>
+    <div class="container section-title" id="ourProject">
+        <h2>Our Team</h2>
+        <h1>Meet Our Highly Professional Team</h1>
+    </div>
+    <div class="container team-section my-5" id="ourTeam">
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card">
@@ -424,35 +424,55 @@
     <footer>
         <div class="footer-container">
             <!-- Left side of the footer -->
-             <div class="row">
-                 <div class="col-lg-4 col-md-4 col-sm-12 footer-left">
-                     <h4>Interior Design Consultancy</h4>
-                     <p>Bringing sensitivity to the design of top restaurants, hotels, and more.</p>
-                 </div>
-     
-                 <!-- Center section of the footer -->
-                 <div class="col-lg-4 col-md-4 col-sm-12  footer-center">
-                     <h4>Useful Links</h4>
-                     <ul>
-                         <li><a href="#aboutUs">About Us</a></li>
-                         <li><a href="#ourService">Our Service</a></li>
-                         <li><a href="#ourProject">Our Project</a></li>
-                         <li><a href="#ourTeam">Our Team</a></li>
-                         <li><a href="#benefit">Benefit</a></li>
-                     </ul>
-                 </div>
-     
-                 <!-- Right section of the footer -->
-                 <div class="col-lg-4 col-md-4 col-sm-12 footer-right">
-                     <h4>Contact Us</h4>
-                     <p>Phone: +888 (123) 869523</p>
-                     <p>Email: cvpengarep@gmail.com</p>
-                     <p>Location: Bali Indonesia</p>
+             <div class="container">
+                 <div class="row">
+                     <div class="col-lg-4 col-md-4 col-sm-12 footer-left">
+                         <h4>Interior Design Consultancy</h4>
+                         <p>Bringing sensitivity to the design of top restaurants, hotels, and more.</p>
+                     </div>
+         
+                     <!-- Center section of the footer -->
+                     <div class="col-lg-4 col-md-4 col-sm-12  footer-center">
+                         <h4>Useful Links</h4>
+                         <ul>
+                             <li><a href="#aboutUs">About Us</a></li>
+                             <li><a href="#ourService">Our Service</a></li>
+                             <li><a href="#ourProject">Our Project</a></li>
+                             <li><a href="#ourTeam">Our Team</a></li>
+                             <li><a href="#benefit">Benefit</a></li>
+                         </ul>
+                     </div>
+         
+                     <!-- Right section of the footer -->
+                     <div class="col-lg-4 col-md-4 col-sm-12 footer-right">
+                         <h4>Contact Us</h4>
+                         <div class="contact-list">
+                            <i class="bi bi-telephone contact-icon"></i>
+                            <div class="contact-text">
+                                <h3>Phone</h3>
+                                <p>+888 (123) 869523</p>
+                            </div>
+                         </div>
+                         <div class="contact-list">
+                            <i class="bi bi-envelope"></i>
+                            <div class="contact-text">
+                                <h3>Email</h3>
+                                <p>cvpengarep@gmail.com</p>
+                            </div>
+                         </div>
+                         <div class="contact-list">
+                            <i class="bi bi-geo-alt"></i>
+                            <div class="contact-text">
+                                <h3>Location</h3>
+                                <p>Bali Indonesia</p>
+                            </div>
+                         </div>
+                     </div>
                  </div>
              </div>
         </div>
         <div class="footer-bottom">
-            <div class="footer-container">
+            <div class="container footer-container bottom">
                 <div class="footer-bottom-left">
                     <p>Copyright ©2024 by CV Pengarep. All Rights Reserved.</p>
                 </div>

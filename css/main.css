@@ -485,6 +485,10 @@ button {
 }
 
 @media (max-width: 767px) {
+    .navbar-container {
+        padding: 0 2.5rem !important;
+    }
+
     .btn-toggle {
       display: block !important;
     }
@@ -503,7 +507,7 @@ button {
     }
 
     .about-us-section {
-        padding: 7rem 2rem !important;
+        padding: 7rem 2rem 0 2rem !important;
     }
 
     .about-us-content {
@@ -541,6 +545,67 @@ button {
         padding-left: 0 !important;
         padding-top: 2rem !important;
     }
+
+    .service-list-item {
+        flex-wrap: wrap !important;
+        padding: 2rem 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .service-list-item .icon {
+        margin-bottom: 1rem !important;
+    }
+
+    .section-title {
+        padding: 0 2rem !important;
+    }
+
+    .section-title h1 {
+        font-size: 2rem !important;
+    }
+
+    .benefit-section {
+        padding: 0 2.5rem !important;
+    }
+
+    .section {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .section-text-container {
+        max-width: 100% !important;
+    }
+
+    .section-title-text {
+        margin-bottom: 1rem !important;
+    }
+
+    .section-description {
+        margin-bottom: 2rem !important;
+    }
+
+    .team-section {
+        padding: 0 2.5rem !important;
+    }
+
+    .card {
+        margin-bottom: 2.5rem !important;
+    }
+
+    .contact-section {
+        padding: 0 2.5rem !important;
+    }
+
+    .footer-left, .footer-center, .footer-right {
+        margin-bottom: 2rem !important;
+    }
+
+    .footer-bottom-left {
+        text-align: center !important;
+        padding: 0 2rem !important;
+    }
+    
     
   }
   
@@ -663,7 +728,7 @@ footer {
 }
 
 .footer-left, .footer-center, .footer-right {
-    flex: 1;
+    /* flex: 1; */
     margin: 0 20px;
 }
 
@@ -726,6 +791,10 @@ footer {
     text-align: left;
 }
 
+.footer-container.bottom {
+    border-top: 1px solid rgb(45, 45, 45);
+}
+
 .footer-bottom-right {
     text-align: right;
 }
@@ -752,4 +821,26 @@ footer {
 .footer-right p a {
     color: white;
     text-decoration: none;
+}
+
+
+.contact-list {
+    display: flex;
+    align-items: start;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.contact-icon {
+    font-size: 1rem;
+}
+
+.contact-list p {
+    margin-bottom: 0;
+}
+
+.contact-list h3 {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 0.2rem;
 }
