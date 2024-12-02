@@ -1,8 +1,8 @@
 <?php
-$host = 'localhost'; 
-$user = 'root';      
-$password = '';     
-$db_name = 'cv_pengarep'; 
+$host = 'o3iyl77734b9n3tg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'; 
+$user = 'cnsbyfdh2qp6sdl2';      
+$password = 'qlev2fbx1qt5qmu6';     
+$db_name = 'qfhwap8byb54498t'; 
 
 $conn = new mysqli($host, $user, $password, $db_name);
 
