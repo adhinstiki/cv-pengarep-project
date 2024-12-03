@@ -40,6 +40,12 @@
             width: 156px;
         }
         
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
         .nav-item.active {
             background-color: var(--primary-color);
             border-top-right-radius: 100px; 
@@ -51,14 +57,19 @@
         }
 
         .nav-item {
-            padding-left: 1rem;
+            padding-left: 1.5rem;
         }
 
-        .nav-item a {
+        .nav-link {
             color: black;
+            padding: 1rem 0;
         }
 
-        .nav-item a:hover {
+        .nav-item:hover .nav-link.active {
+            color: white;
+        }
+
+        .nav-item:hover .nav-link {
             color: var(--primary-color);
         }
 
@@ -109,15 +120,19 @@
         </a>
         <ul class="nav flex-column">
             <li class="nav-item active">
+                <i class="bi bi-envelope-paper-fill nav-link active"></i>
                 <a class="nav-link active" href="#">Primary</a>
             </li>
             <li class="nav-item">
+                <i class="bi bi-people-fill nav-link"></i>
                 <a class="nav-link" href="#">Social</a>
             </li>
             <li class="nav-item">
+                <i class="bi bi-tag-fill nav-link"></i>
                 <a class="nav-link" href="#">Promotions</a>
             </li>
             <li class="nav-item">
+                <i class="bi bi-exclamation-circle-fill nav-link"></i>
                 <a class="nav-link" href="#">Spam</a>
             </li>
         </ul>
@@ -128,7 +143,7 @@
             <thead class="table-thead">
             <tr>
                 <th>#</th>
-                <th>Email</th>
+                <th>Name</th>
                 <th>Subject</th>
                 <th>Date</th>
             </tr>
