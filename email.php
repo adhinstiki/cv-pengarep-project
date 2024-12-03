@@ -13,16 +13,62 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+        :root {
+            --primary-font: "Outfit", sans-serif;
+            --primary-color: #906e50;
+            --text-muted: #767676;
+            --accent-color: #4acbb0;
+            --grey-outline: #C4C4C4;
+            --grey-button: #777777;
+            --dark-color: #303030;
         }
+
+        body {
+            font-family: var(--primary-font);
+            overflow-x: hidden !important;
+        }
+
+        .navbar-brand {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .navbar-brand img {
+            width: 156px;
+        }
+        
+        .nav-item.active {
+            background-color: var(--primary-color);
+            border-top-right-radius: 100px; 
+            border-bottom-right-radius: 100px; 
+        }
+
+        .nav-link.active {
+            color: white;
+        }
+
+        .nav-item {
+            padding-left: 1rem;
+        }
+
+        .nav-item a {
+            color: black;
+        }
+
+        .nav-item a:hover {
+            color: var(--primary-color);
+        }
+
         .sidebar {
             height: 100vh;
             position: fixed;
             top: 0;
             left: 0;
             background-color: #f5f5f5;
-            padding: 1rem;
+            padding: 1rem 1rem 1rem 0;
             width: 250px;
             overflow-y: auto;
         }
@@ -34,6 +80,16 @@
             background-color: #f0f0f0;
             cursor: pointer;
         }
+
+        .table-thead {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .table>:not(:last-child)>:last-child>* {
+            border: 0 !important;
+        }
+
         @media (max-width: 768px) {
             .sidebar {
                 position: static;
@@ -48,9 +104,11 @@
 </head>
 <body>
     <div class="sidebar">
-        <h5>Inbox</h5>
+        <a class="navbar-brand" href="#home">
+            <img src="assets/images/logo.png" alt="Logo" class="d-inline-block align-text-top">
+        </a>
         <ul class="nav flex-column">
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link active" href="#">Primary</a>
             </li>
             <li class="nav-item">
@@ -63,38 +121,36 @@
                 <a class="nav-link" href="#">Spam</a>
             </li>
         </ul>
-        <hr>
-        <button class="btn btn-primary w-100">Compose</button>
     </div>
     <div class="content">
         <h3>Inbox</h3>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Sender</th>
-                    <th scope="col">Subject</th>
-                    <th scope="col">Date</th>
-                </tr>
+        <table class="table table-striped table-hover">
+            <thead class="table-thead">
+            <tr>
+                <th>#</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Date</th>
+            </tr>
             </thead>
             <tbody>
-                <?php
-                include 'db.php';
-                $no = 1;
-                $query = "SELECT name, email, phone, subject, message, DATE_FORMAT(created_at, '%Y-%m-%d') as date FROM orders";
-                $result = $pdo->query($query);
-                
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    ?>
-                    <tr>
-                        <td class="td-center"><?php echo $no++; ?></td>
-                        <td class="td-center"><?php echo htmlspecialchars($row['email']); ?></td>
-                        <td><?php echo htmlspecialchars($row['subject']); ?></td>
-                        <td class="td-center"><?php echo htmlspecialchars($row['date']); ?></td>
-                    </tr>
-                    <?php
-                }
+            <?php
+            include 'db.php';
+            $no = 1;
+            $query = "SELECT id, name, email, subject, DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') as date FROM orders";
+            $result = $pdo->query($query);
+
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 ?>
+                <tr onclick="window.location.href='message-detail.php?id=<?php echo $row['id']; ?>';" style="cursor: pointer;">
+                    <td><?php echo $no++; ?></td>
+                    <td><?php echo htmlspecialchars($row['name']); ?></td>
+                    <td><?php echo htmlspecialchars($row['subject']); ?></td>
+                    <td><?php echo htmlspecialchars($row['date']); ?></td>
+                </tr>
+                <?php
+            }
+            ?>
             </tbody>
         </table>
     </div>
