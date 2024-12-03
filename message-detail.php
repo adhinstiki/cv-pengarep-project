@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+// Cek apakah pengguna sudah login (apakah session sudah ada)
+if (!isset($_SESSION['username'])) {
+    // Jika tidak ada, redirect ke halaman login
+    header("Location: login.php");
+    exit();
+}
+
 require 'db.php'; 
 
 // Ambil ID dari URL
@@ -108,18 +117,30 @@ if ($id > 0) {
             margin-left: 250px;
             padding: 1rem;
         }
-        .message-row:hover {
-            background-color: #f0f0f0;
-            cursor: pointer;
+        
+        .btn-back {
+            margin-bottom: 2rem;
         }
 
-        .table-thead {
+        .card-header {
             background-color: var(--primary-color);
-            color: white;
         }
 
-        .table>:not(:last-child)>:last-child>* {
-            border: 0 !important;
+        .btn-reply {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--grey-button);
+            background-color: rgba(0, 0, 0, 0);
+            color: var(--grey-button);
+            padding: 0.2rem 1.5rem;
+            border-radius: 100px;
+            margin-top: 2rem;
+        }
+
+        .btn-reply:hover {
+            background-color: #f7f7f7;
         }
 
         @media (max-width: 768px) {
@@ -137,7 +158,7 @@ if ($id > 0) {
 </head>
 <body>
 <div class="sidebar">
-        <a class="navbar-brand" href="#home">
+        <a class="navbar-brand" href="">
             <img src="assets/images/logo.png" alt="Logo" class="d-inline-block align-text-top">
         </a>
         <ul class="nav flex-column">
@@ -157,12 +178,16 @@ if ($id > 0) {
                 <i class="bi bi-exclamation-circle-fill nav-link"></i>
                 <a class="nav-link" href="#">Spam</a>
             </li>
+            <li class="nav-item">
+                <i class="bi bi-exclamation-circle-fill nav-link"></i>
+                <a class="nav-link" href="logout.php">Logout</a>
+            </li>
         </ul>
     </div>
     <div class="content">
-        <a href="email.php" class="btn btn-secondary mt-3">Back to Inbox</a>
+        <a href="email.php" class="btn btn-secondary mt-3 btn-back">Back to Inbox</a>
         <div class="card">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header text-white">
                 Subject: <?php echo htmlspecialchars($message['subject']); ?>
             </div>
             <div class="card-body">
@@ -174,6 +199,10 @@ if ($id > 0) {
                 <p><?php echo nl2br(htmlspecialchars($message['message'])); ?></p>
             </div>
         </div>
+        <button class="btn-reply">
+            <i class="bi bi-arrow-90deg-left"></i>
+            <span>Reply</span>
+        </button>
     </div>
     
 

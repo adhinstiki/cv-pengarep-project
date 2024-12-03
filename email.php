@@ -1,3 +1,17 @@
+<?php
+// Mulai sesi
+session_start();
+
+// Cek apakah pengguna sudah login (apakah session sudah ada)
+if (!isset($_SESSION['username'])) {
+    // Jika tidak ada, redirect ke halaman login
+    header("Location: login.php");
+    exit();
+}
+
+// Lanjutkan dengan kode email.php jika sudah login
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -134,6 +148,10 @@
             <li class="nav-item">
                 <i class="bi bi-exclamation-circle-fill nav-link"></i>
                 <a class="nav-link" href="#">Spam</a>
+            </li>
+            <li class="nav-item">
+                <i class="bi bi-exclamation-circle-fill nav-link"></i>
+                <a class="nav-link" href="logout.php">Logout</a>
             </li>
         </ul>
     </div>
