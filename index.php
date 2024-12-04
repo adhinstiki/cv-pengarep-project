@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -390,6 +394,25 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <h1>Get in touchs</h1>
                 <p>Select layout follower boolean editor flows. Scrolling variant move font group variant layout device share.</p>     
+
+                <?php if (isset($_SESSION['success_message'])): ?>
+                    <script>
+                        setTimeout(function() {
+                            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                        }, 10);
+                    </script>
+                    <div class="alert alert-success">
+                        <?php echo $_SESSION['success_message']; ?>
+                    </div>
+                    <?php unset($_SESSION['success_message']); ?>
+                <?php elseif (isset($_SESSION['error_message'])): ?>
+                    <div class="alert alert-danger">
+                        <?php echo $_SESSION['error_message']; ?>
+                    </div>
+                    <?php unset($_SESSION['error_message']); ?>
+                <?php endif; ?>
+
+
                 <form action="submit.php" method="post" class="contact-form">
                     <div class="form-group">
                         <input type="text" id="name" name="name" placeholder="Name" required>

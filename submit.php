@@ -26,9 +26,13 @@ try {
         ':subject' => $subject,
         ':message' => $message
     ]);
-
+    session_start();
+    $_SESSION['success_message'] = "Your message has been successfully sent!";
     header("Location: index.php?status=success");
+    exit();
 } catch (PDOException $e) {
+    session_start();
+    $_SESSION['error_message'] = "There was an error sending your message.";
     error_log("Error inserting data: " . $e->getMessage());
     header("Location: index.php?status=error");
 }

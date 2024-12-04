@@ -1,15 +1,10 @@
 <?php
-// Mulai sesi
 session_start();
 
-// Cek apakah pengguna sudah login (apakah session sudah ada)
 if (!isset($_SESSION['username'])) {
-    // Jika tidak ada, redirect ke halaman login
-    header("Location: login.php");
+    header("Location: login.php?status=not_logged_in");
     exit();
 }
-
-// Lanjutkan dengan kode email.php jika sudah login
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +53,13 @@ if (!isset($_SESSION['username'])) {
             display: flex;
             align-items: center;
             gap: 1rem;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background-color: rgb(220, 220, 220);
+            border-top-right-radius: 100px; 
+            border-bottom-right-radius: 100px; 
         }
 
         .nav-item.active {
@@ -84,7 +86,11 @@ if (!isset($_SESSION['username'])) {
         }
 
         .nav-item:hover .nav-link {
-            color: var(--primary-color);
+            color: black;
+        }
+
+        .nav-link:focus {
+            color: black !important;
         }
 
         .sidebar {
@@ -115,6 +121,47 @@ if (!isset($_SESSION['username'])) {
             border: 0 !important;
         }
 
+        .search-container {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            color: #888; 
+            pointer-events: none; 
+        }
+
+        .search-input {
+            padding: 0.5rem 3rem;
+            border-radius: 5px; 
+            transition: none; 
+            background-color: #f5f5f5;
+        }
+
+        .search-input:focus {
+            outline: none; 
+            box-shadow: none; 
+            border: 1px solid black;
+        }
+
+        .status {
+            width: 10px; 
+            height: 10px; 
+            display: inline-block; 
+            background-color: green;
+            border-radius: 100px;
+            margin-left: 0.8rem;
+        }
+
+        .first-column {
+            width : 10px;
+        }
+
+
         @media (max-width: 768px) {
             .sidebar {
                 position: static;
@@ -129,9 +176,9 @@ if (!isset($_SESSION['username'])) {
 </head>
 <body>
     <div class="sidebar">
-        <a class="navbar-brand" href="#home">
-            <img src="assets/images/logo.png" alt="Logo" class="d-inline-block align-text-top">
-        </a>
+        <div class="navbar-brand">
+            <img src="assets/images/logo-color.png" alt="Logo" class="d-inline-block align-text-top">
+        </div>
         <ul class="nav flex-column">
             <li class="nav-item active">
                 <i class="bi bi-envelope-paper-fill nav-link active"></i>
@@ -149,43 +196,66 @@ if (!isset($_SESSION['username'])) {
                 <i class="bi bi-exclamation-circle-fill nav-link"></i>
                 <a class="nav-link" href="#">Spam</a>
             </li>
-            <li class="nav-item">
-                <i class="bi bi-exclamation-circle-fill nav-link"></i>
-                <a class="nav-link" href="logout.php">Logout</a>
+            <li class="nav-item" onclick="showLogoutAlert();">
+                <i class="bi bi-box-arrow-left nav-link"></i>
+                <a class="nav-link" href="">Logout</a>
             </li>
         </ul>
     </div>
-    <div class="content">
-        <h3>Inbox</h3>
-        <table class="table table-striped table-hover">
-            <thead class="table-thead">
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Subject</th>
-                <th>Date</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
-            include 'db.php';
-            $no = 1;
-            $query = "SELECT id, name, email, subject, DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') as date FROM orders";
-            $result = $pdo->query($query);
-
-            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                ?>
-                <tr onclick="window.location.href='message-detail.php?id=<?php echo $row['id']; ?>';" style="cursor: pointer;">
-                    <td><?php echo $no++; ?></td>
-                    <td><?php echo htmlspecialchars($row['name']); ?></td>
-                    <td><?php echo htmlspecialchars($row['subject']); ?></td>
-                    <td><?php echo htmlspecialchars($row['date']); ?></td>
-                </tr>
-                <?php
-            }
-            ?>
-            </tbody>
-        </table>
+    <div class="container-fluid">
+        <div class="content">
+            <div class="search-container position-relative">
+                <span class="search-icon">
+                    <i class="bi bi-search"></i>
+                </span>
+                <input 
+                    type="text" 
+                    class="form-control search-input" 
+                    placeholder="Search email" 
+                    aria-label="Search" 
+                />
+            </div>
+            <table class="table table-striped table-hover">
+                <thead class="table-thead">
+                    <tr>
+                        <th class="first-column"></th>
+                        <th>Name</th>
+                        <th>Subject</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    include 'db.php';
+                    $query = "SELECT id, name, email, subject, DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') as date 
+                            FROM orders 
+                            ORDER BY created_at DESC";
+                    $result = $pdo->query($query);
+    
+                    $firstRow = true; 
+    
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        ?>
+                        <tr onclick="window.location.href='message-detail.php?id=<?php echo $row['id']; ?>';" style="cursor: pointer;">
+                            <td class="first-column">
+                                <?php 
+                                if ($firstRow) {
+                                    echo '<span class="status"></span>';
+                                    $firstRow = false; 
+                                }
+                                ?>
+                            </td>
+                            <td><?php echo htmlspecialchars($row['name']); ?></td>
+                            <td><?php echo htmlspecialchars($row['subject']); ?></td>
+                            <td><?php echo htmlspecialchars($row['date']); ?></td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+    
+        </div>
     </div>
 
     <!-- JS BOOTSTRAP -->
@@ -204,5 +274,27 @@ if (!isset($_SESSION['username'])) {
 
     <!-- MAIN JS -->
      <script src="js/main.js"></script>
+
+    <!-- CDN SWEETALERT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- LOGOUT ALERT -->
+    <script>
+        function showLogoutAlert() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You will logout this page",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, logout!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'logout.php';
+                }
+            });
+        }
+    </script>
 </body>
 </html>

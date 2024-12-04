@@ -1,10 +1,8 @@
 <?php
 session_start();
 
-// Cek apakah pengguna sudah login (apakah session sudah ada)
 if (!isset($_SESSION['username'])) {
-    // Jika tidak ada, redirect ke halaman login
-    header("Location: login.php");
+    header("Location: login.php?status=not_logged_in");
     exit();
 }
 
@@ -74,6 +72,7 @@ if ($id > 0) {
             display: flex;
             align-items: center;
             gap: 1rem;
+            cursor: pointer;
         }
 
         .nav-item.active {
@@ -81,9 +80,14 @@ if ($id > 0) {
             border-top-right-radius: 100px; 
             border-bottom-right-radius: 100px; 
         }
+        
 
         .nav-link.active {
             color: white;
+        }
+
+        .nav-item:hover .nav-link {
+            color: black;
         }
 
         .nav-item {
@@ -95,12 +99,24 @@ if ($id > 0) {
             padding: 1rem 0;
         }
 
+        .nav-item:hover {
+            background-color: rgb(220, 220, 220);
+            border-top-right-radius: 100px; 
+            border-bottom-right-radius: 100px; 
+        }
+
+        .nav-item.active:hover {
+            background-color: var(--primary-color);
+            border-top-right-radius: 100px; 
+            border-bottom-right-radius: 100px; 
+        }
+
         .nav-item:hover .nav-link.active {
             color: white;
         }
 
-        .nav-item:hover .nav-link {
-            color: var(--primary-color);
+        .nav-link:focus {
+            color: black !important;
         }
 
         .sidebar {
@@ -140,7 +156,7 @@ if ($id > 0) {
         }
 
         .btn-reply:hover {
-            background-color: #f7f7f7;
+            background-color: rgb(220, 220, 220);
         }
 
         @media (max-width: 768px) {
@@ -158,9 +174,9 @@ if ($id > 0) {
 </head>
 <body>
 <div class="sidebar">
-        <a class="navbar-brand" href="">
-            <img src="assets/images/logo.png" alt="Logo" class="d-inline-block align-text-top">
-        </a>
+        <div class="navbar-brand">
+            <img src="assets/images/logo-color.png" alt="Logo" class="d-inline-block align-text-top">
+        </div>
         <ul class="nav flex-column">
             <li class="nav-item active">
                 <i class="bi bi-envelope-paper-fill nav-link active"></i>
@@ -178,31 +194,33 @@ if ($id > 0) {
                 <i class="bi bi-exclamation-circle-fill nav-link"></i>
                 <a class="nav-link" href="#">Spam</a>
             </li>
-            <li class="nav-item">
-                <i class="bi bi-exclamation-circle-fill nav-link"></i>
-                <a class="nav-link" href="logout.php">Logout</a>
+            <li class="nav-item" onclick="showLogoutAlert();">
+                <i class="bi bi-box-arrow-left nav-link"></i>
+                <a class="nav-link" href="">Logout</a>
             </li>
         </ul>
     </div>
-    <div class="content">
-        <a href="email.php" class="btn btn-secondary mt-3 btn-back">Back to Inbox</a>
-        <div class="card">
-            <div class="card-header text-white">
-                Subject: <?php echo htmlspecialchars($message['subject']); ?>
+    <div class="container-fluid">
+        <div class="content">
+            <a href="email.php" class="btn btn-secondary mt-3 btn-back">Back to Inbox</a>
+            <div class="card">
+                <div class="card-header text-white">
+                    Subject: <?php echo htmlspecialchars($message['subject']); ?>
+                </div>
+                <div class="card-body">
+                    <p><strong>From:</strong> <?php echo htmlspecialchars($message['name']); ?> (<?php echo htmlspecialchars($message['email']); ?>)</p>
+                    <p><strong>Phone:</strong> <?php echo htmlspecialchars($message['phone']); ?></p>
+                    <p><strong>Received On:</strong> <?php echo htmlspecialchars($message['date']); ?></p>
+                    <hr>
+                    <p><strong>Message:</strong></p>
+                    <p><?php echo nl2br(htmlspecialchars($message['message'])); ?></p>
+                </div>
             </div>
-            <div class="card-body">
-                <p><strong>From:</strong> <?php echo htmlspecialchars($message['name']); ?> (<?php echo htmlspecialchars($message['email']); ?>)</p>
-                <p><strong>Phone:</strong> <?php echo htmlspecialchars($message['phone']); ?></p>
-                <p><strong>Received On:</strong> <?php echo htmlspecialchars($message['date']); ?></p>
-                <hr>
-                <p><strong>Message:</strong></p>
-                <p><?php echo nl2br(htmlspecialchars($message['message'])); ?></p>
-            </div>
+            <button class="btn-reply">
+                <i class="bi bi-arrow-90deg-left"></i>
+                <span>Reply</span>
+            </button>
         </div>
-        <button class="btn-reply">
-            <i class="bi bi-arrow-90deg-left"></i>
-            <span>Reply</span>
-        </button>
     </div>
     
 
@@ -222,5 +240,27 @@ if ($id > 0) {
 
     <!-- MAIN JS -->
      <script src="js/main.js"></script>
+
+     <!-- CDN SWEETALERT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- LOGOUT ALERT -->
+    <script>
+        function showLogoutAlert() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You will logout this page",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, logout!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'logout.php';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
