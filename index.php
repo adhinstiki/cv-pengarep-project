@@ -495,7 +495,7 @@ session_start();
              </div>
         </div>
         <div class="footer-bottom">
-            <div class="container footer-container bottom">
+            <div class="container-fluid footer-container bottom">
                 <div class="footer-bottom-left">
                     <p>Copyright ©2024 by CV Pengarep. All Rights Reserved.</p>
                 </div>

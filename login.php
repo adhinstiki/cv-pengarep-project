@@ -37,7 +37,7 @@ session_start();
         .login-container {
             max-width: 400px;
             width: 100%;
-            padding: 1rem 3rem;
+            padding: 2rem 3rem;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -61,7 +61,7 @@ session_start();
 
 
         .custom-toast {
-            margin-top: 2.5rem; 
+            margin-top: 2rem; 
         }
 
         .btn-login {
@@ -117,7 +117,7 @@ session_start();
         Swal.fire({
             toast: true,
             icon: 'warning',
-            title: 'Login terlebih dahulu!',
+            title: 'You must login first!',
             position: 'top',
             customClass: {
                 popup: 'custom-toast'
@@ -128,5 +128,37 @@ session_start();
         });
         <?php endif; ?>
     </script>
+
+    <!-- ALERT INVALID USSERNAME & PASSWORD -->
+    <?php if (isset($_GET['status'])): ?>
+        <script>
+            const status = "<?php echo htmlspecialchars($_GET['status']); ?>";
+            
+            if (status === "invalid_credentials") {
+                Swal.fire({
+                    toast: true,
+                    icon: 'error',
+                    title: 'Wrong username or password!',
+                    position: 'top',
+                    customClass: {
+                    popup: 'custom-toast'
+                    },
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true
+                });
+            } else if (status === "missing_fields") {
+                Swal.fire({
+                    toast: true,
+                    icon: 'warning',
+                    title: 'Please fill out all fields',
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true
+                });
+            }
+        </script>
+    <?php endif; ?>
 </body>
 </html>

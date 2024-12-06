@@ -12,15 +12,9 @@ if (isset($_POST['username'], $_POST['password'])) {
         $stmt->execute(['username' => $username]);
         $user = $stmt->fetch();
 
-        // Validasi username
-        if (!$user) {
-            header("Location: login.php?status=invalid_username");
-            exit();
-        }
-
-        // Validasi password (dengan plaintext)
-        if ($password !== $user['password']) {
-            header("Location: login.php?status=invalid_password");
+        // Gabungan validasi username dan password
+        if (!$user || $password !== $user['password']) {
+            header("Location: login.php?status=invalid_credentials");
             exit();
         }
 
