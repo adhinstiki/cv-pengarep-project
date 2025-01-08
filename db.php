@@ -1,5 +1,5 @@
 <?php
-$host = 'localhost'; 
+$host = '34.128.95.243'; 
 $user = 'root';      
 $password = 'adhi1234';     
 $db_name = 'db_cvpengarep'; 
