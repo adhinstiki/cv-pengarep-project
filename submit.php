@@ -1,39 +1,94 @@
 <?php
-require 'db.php'; 
+session_start();
 
-$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
-$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-$phone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_STRING);
-$subject = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_STRING);
-$message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING);
-
-if (empty($name) || empty($email) || empty($phone) || empty($subject) || empty($message)) {
-    header("Location: index.php?status=empty_fields");
+// Fungsi untuk menghindari XSS dengan sanitasi input
+function sanitize_input($data) {
+    return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
 }
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    header("Location: index.php?status=invalid_email");
-}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Ambil data dari form
+    $name = sanitize_input($_POST['name']);
+    $email = sanitize_input($_POST['email']);
+    $phone = sanitize_input($_POST['phone']);
+    $subject = sanitize_input($_POST['subject']);
+    $message = sanitize_input($_POST['message']);
+    
+    // Validasi file upload
+    $file_name = $_FILES['file']['name'];
+    $file_tmp = $_FILES['file']['tmp_name'];
+    $file_size = $_FILES['file']['size'];
+    $file_error = $_FILES['file']['error'];
 
-$sql = "INSERT INTO orders (name, email, phone, subject, message) VALUES (:name, :email, :phone, :subject, :message)";
-$stmt = $pdo->prepare($sql);
+    // Pastikan file ada (jika tidak, beri pesan error)
+    if (empty($file_name)) {
+        $_SESSION['error_message'] = "Please attach a file.";
+        header("Location: index.php?status=error");
+        exit();
+    }
 
-try {
-    $stmt->execute([
-        ':name' => $name,
-        ':email' => $email,
-        ':phone' => $phone,
-        ':subject' => $subject,
-        ':message' => $message
-    ]);
-    session_start();
-    $_SESSION['success_message'] = "Your message has been successfully sent!";
-    header("Location: index.php?status=success");
-    exit();
-} catch (PDOException $e) {
-    session_start();
-    $_SESSION['error_message'] = "There was an error sending your message.";
-    error_log("Error inserting data: " . $e->getMessage());
-    header("Location: index.php?status=error");
+    // Tentukan folder upload
+    $upload_dir = "uploads/";
+
+    // Validasi ekstensi file
+    $allowed_extensions = ['jpg', 'jpeg', 'png', 'pdf'];
+    $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+
+    if (!in_array($file_ext, $allowed_extensions)) {
+        $_SESSION['error_message'] = "File type not allowed!";
+        header("Location: index.php?status=error");
+        exit();
+    }
+
+    // Validasi ukuran file (maks 5MB)
+    if ($file_size > 5 * 1024 * 1024) {
+        $_SESSION['error_message'] = "File size exceeds the limit!";
+        header("Location: index.php?status=error");
+        exit();
+    }
+
+    // Buat nama file unik
+    $unique_file_name = uniqid() . '_' . $file_name;
+
+    // Tentukan path untuk menyimpan file
+    $file_path = $upload_dir . $unique_file_name;
+
+    // Pindahkan file ke folder upload
+    if (!move_uploaded_file($file_tmp, $file_path)) {
+        $_SESSION['error_message'] = "Error uploading file!";
+        header("Location: index.php?status=error");
+        exit();
+    }
+
+    // Koneksi ke database
+    include('db.php');
+
+    try {
+        // Masukkan data ke database
+        $stmt = $pdo->prepare("INSERT INTO orders (NAME, email, phone, SUBJECT, message, file_name, file_path) 
+                               VALUES (:name, :email, :phone, :subject, :message, :file_name, :file_path)");
+
+        $stmt->execute([
+            ':name' => $name,
+            ':email' => $email,
+            ':phone' => $phone,
+            ':subject' => $subject,
+            ':message' => $message,
+            ':file_name' => $unique_file_name,
+            ':file_path' => $file_path
+        ]);
+
+        // Pesan sukses
+        $_SESSION['success_message'] = "Your message has been successfully sent!";
+        header("Location: index.php?status=success");
+        exit();
+    } catch (PDOException $e) {
+        // Tangani error
+        $error_message = "There was an error sending your message.";
+        error_log("Error inserting data: " . $e->getMessage());
+        $_SESSION['error_message'] = $error_message;
+        header("Location: index.php?status=error");
+        exit();
+    }
 }
 ?>

@@ -93,11 +93,11 @@ session_start();
         <form action="authenticate.php" method="POST">
             <div class="input-field">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" required>
+                <input type="text" class="form-control" id="username" name="username" required autocomplete>
             </div>
             <div class="input-field">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <input type="password" class="form-control" id="password" name="password" required autocomplete="current-password">
             </div>
             <div class="btn-container">
                 <button type="submit" class="btn btn-login">Login</button>

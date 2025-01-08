@@ -1,8 +1,8 @@
 <?php
-$host = 'o3iyl77734b9n3tg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'; 
-$user = 'cnsbyfdh2qp6sdl2';      
-$password = 'qlev2fbx1qt5qmu6';     
-$db_name = 'qfhwap8byb54498t'; 
+$host = 'localhost'; 
+$user = 'root';      
+$password = 'adhi1234';     
+$db_name = 'db_cvpengarep'; 
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db_name;charset=$charset";

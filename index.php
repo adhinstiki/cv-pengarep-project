@@ -147,7 +147,7 @@ session_start();
                     <div class="about-us-title">
                         <h2>Welcome To CV Pengarep</h2>
                         <h1>Interior Design with Different Approach</h1>
-                        <p>Et purus duis sollicitudin dignissim habitant. Egestas nulla quis venenatis cras sed eu massa eu faucibus Urna fusce Et purus duis sollicitudin dig- nissim habitant.</p>
+                        <p>CV Pengarep is dedicated to transforming spaces into inspiring environments that reflect your unique vision and lifestyle.</p>
                     </div>
                     <div class="skill-list">
                         <div class="skill-item">
@@ -413,7 +413,7 @@ session_start();
                 <?php endif; ?>
 
 
-                <form action="submit.php" method="post" class="contact-form">
+                <form action="submit.php" method="post" class="contact-form" enctype="multipart/form-data">
                     <div class="form-group">
                         <input type="text" id="name" name="name" placeholder="Name" required>
                     </div>
@@ -430,6 +430,10 @@ session_start();
                         <textarea id="message" name="message" placeholder="Type your message here..." rows="5" required></textarea>
                     </div>
                     <div class="form-group">
+                        <label for="formFile" class="form-label">Attach your reference</label>
+                        <input class="form-control file-upload" type="file" id="fileUpload" name="file">
+                    </div>
+                    <div class="form-group">
                         <button type="submit" class="btn-submit">Submit</button>
                     </div>
                 </form>
@@ -437,7 +441,7 @@ session_start();
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <iframe class="google-location"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.024853074431!2d100.24585701531467!3d-0.20932389999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df6e9f3482b2775%3A0xf7d43d68ef238014!2sJl.%20Sultan%20Agung%2C%20Denpasar%2C%20Bali!5e0!3m2!1sen!2sid!4v1636499501687!5m2!1sen!2sid"
-                    width="600" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    width="600" height="700" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </div>

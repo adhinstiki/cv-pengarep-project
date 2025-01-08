@@ -13,7 +13,7 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 if ($id > 0) {
     // Query untuk mendapatkan detail pesan
-    $query = "SELECT name, email, phone, subject, message, DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') as date 
+    $query = "SELECT name, email, phone, subject, message, file_path, DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') as date 
             FROM orders WHERE id = :id";
     $stmt = $pdo->prepare($query);
     $stmt->execute(['id' => $id]);
@@ -214,6 +214,9 @@ if ($id > 0) {
                     <hr>
                     <p><strong>Message:</strong></p>
                     <p><?php echo nl2br(htmlspecialchars($message['message'])); ?></p>
+                    <hr>
+                    <p><strong>Reference Image:</strong></p>
+                    <img src="<?php echo htmlspecialchars($message['file_path']); ?>" alt="Uploaded Image" width="300" />
                 </div>
             </div>
             <button class="btn-reply">
