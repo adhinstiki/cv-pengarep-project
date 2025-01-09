@@ -1,5 +1,5 @@
 <?php
-$host = 'cv-pengarep-project:asia-southeast2:cvpengarep-instance'; 
+$host = '34.128.85.1'; 
 $user = 'root';      
 $password = 'adhi1234';     
 $db_name = 'db_cvpengarep'; 
