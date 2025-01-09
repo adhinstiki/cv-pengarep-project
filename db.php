@@ -1,5 +1,5 @@
 <?php
-$host = '/cloudsql/cv-pengarep-project:asia-southeast2:cvpengarep-instance';
+$host = 'cv-pengarep-project:asia-southeast2:cvpengarep-instance';
 $user = 'root';      
 $password = 'adhi1234';     
 $dbname = 'db_cvpengarep';  // Pastikan nama variabel sesuai
