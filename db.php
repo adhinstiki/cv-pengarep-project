@@ -1,5 +1,5 @@
 <?php
-$host = '34.128.95.243'; 
+$host = '34.128.85.1'; 
 $user = 'root';      
 $password = 'adhi1234';     
 $db_name = 'db_cvpengarep'; 
