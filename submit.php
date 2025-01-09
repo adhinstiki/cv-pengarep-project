@@ -27,9 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // Tentukan folder upload
-    $upload_dir = "uploads/";
-
     // Validasi ekstensi file
     $allowed_extensions = ['jpg', 'jpeg', 'png', 'pdf'];
     $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
@@ -50,43 +47,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Buat nama file unik
     $unique_file_name = uniqid() . '_' . $file_name;
 
-    // Tentukan path untuk menyimpan file
-    $file_path = $upload_dir . $unique_file_name;
+    // Include Google Cloud Storage SDK
+    require 'vendor/autoload.php'; 
 
-    // Pindahkan file ke folder upload
-    if (!move_uploaded_file($file_tmp, $file_path)) {
-        $_SESSION['error_message'] = "Error uploading file!";
-        header("Location: index.php?status=error");
-        exit();
-    }
+    // Path ke kredensial service account
+    $keyFilePath = '/var/www/html/-key.json';
 
-    // Koneksi ke database
-    include('db.php');
+    // Membuat instansi client untuk Google Cloud Storage
+    $storage = new \Google\Cloud\Storage\StorageClient([
+        'keyFilePath' => $keyFilePath
+    ]);
 
+    // Tentukan nama bucket
+    $bucketName = 'YOUR_BUCKET_NAME';
+
+    // Dapatkan referensi ke bucket
+    $bucket = $storage->bucket($bucketName);
+
+    // Upload file ke bucket
     try {
-        // Masukkan data ke database
-        $stmt = $pdo->prepare("INSERT INTO orders (NAME, email, phone, SUBJECT, message, file_name, file_path) 
-                               VALUES (:name, :email, :phone, :subject, :message, :file_name, :file_path)");
+        $object = $bucket->upload(
+            fopen($file_tmp, 'r'),
+            [
+                'name' => $unique_file_name  
+            ]
+        );
 
-        $stmt->execute([
-            ':name' => $name,
-            ':email' => $email,
-            ':phone' => $phone,
-            ':subject' => $subject,
-            ':message' => $message,
-            ':file_name' => $unique_file_name,
-            ':file_path' => $file_path
-        ]);
+        // Ambil URL file yang diupload
+        $file_url = $object->info()['mediaLink'];
 
-        // Pesan sukses
-        $_SESSION['success_message'] = "Your message has been successfully sent!";
-        header("Location: index.php?status=success");
-        exit();
-    } catch (PDOException $e) {
-        // Tangani error
-        $error_message = "There was an error sending your message.";
-        error_log("Error inserting data: " . $e->getMessage());
-        $_SESSION['error_message'] = $error_message;
+        // Koneksi ke database
+        include('db.php');
+
+        try {
+            // Masukkan data ke database
+            $stmt = $pdo->prepare("INSERT INTO orders (NAME, email, phone, SUBJECT, message, file_name, file_path) 
+                                   VALUES (:name, :email, :phone, :subject, :message, :file_name, :file_path)");
+
+            $stmt->execute([
+                ':name' => $name,
+                ':email' => $email,
+                ':phone' => $phone,
+                ':subject' => $subject,
+                ':message' => $message,
+                ':file_name' => $unique_file_name,
+                ':file_path' => $file_url  
+            ]);
+
+            // Pesan sukses
+            $_SESSION['success_message'] = "Your message has been successfully sent!";
+            header("Location: index.php?status=success");
+            exit();
+        } catch (PDOException $e) {
+            // Tangani error
+            $error_message = "There was an error sending your message.";
+            error_log("Error inserting data: " . $e->getMessage());
+            $_SESSION['error_message'] = $error_message;
+            header("Location: index.php?status=error");
+            exit();
+        }
+
+    } catch (Exception $e) {
+        $_SESSION['error_message'] = "Error uploading file to Google Cloud Storage: " . $e->getMessage();
         header("Location: index.php?status=error");
         exit();
     }
