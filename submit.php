@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require 'vendor/autoload.php'; 
 
     // Path ke kredensial service account
-    $keyFilePath = '/var/www/html/-key.json';
+    $keyFilePath = '/var/www/html/key.json';
 
     // Membuat instansi client untuk Google Cloud Storage
     $storage = new \Google\Cloud\Storage\StorageClient([
