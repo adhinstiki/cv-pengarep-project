@@ -1,7 +1,7 @@
 <?php
 $host = '34.128.85.1'; 
 $user = 'root';      
-$password = 'adhi1234';     
+$password = '';     
 $db_name = 'db_cvpengarep'; 
 $charset = 'utf8mb4';
 
