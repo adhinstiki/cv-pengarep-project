@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ]);
 
     // Tentukan nama bucket
-    $bucketName = 'YOUR_BUCKET_NAME';
+    $bucketName = 'cvpengarep_bucket';
 
     // Dapatkan referensi ke bucket
     $bucket = $storage->bucket($bucketName);
