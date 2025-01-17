@@ -215,7 +215,7 @@ if ($id > 0) {
                     <p><strong>Message:</strong></p>
                     <p><?php echo nl2br(htmlspecialchars($message['message'])); ?></p>
                     <hr>
-                    <p><strong>Reference Image:</strong></p>
+                    <p><strong>Reference Image: <?php echo htmlspecialchars($signedUrl); ?></strong></p>
                     <img src="<?php echo htmlspecialchars($signedUrl); ?>" alt="Uploaded Image" width="300" />
                 </div>
             </div>
