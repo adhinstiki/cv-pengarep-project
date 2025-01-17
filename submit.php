@@ -127,9 +127,6 @@ try {
 
     // Buat Signed URL yang berlaku selama 15 menit
     $signedUrl = $object->signedUrl(new \DateTime('15 minutes'));
-
-    // Tampilkan gambar dengan Signed URL
-    echo "<img src='$signedUrl' alt='Uploaded Image'>";
 } catch (Exception $e) {
     echo "Error generating signed URL: " . $e->getMessage();
 }
