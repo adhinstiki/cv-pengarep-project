@@ -113,4 +113,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
+// Kode untuk menampilkan gambar dengan Signed URL
+try {
+    // Ambil file_path dari database untuk gambar yang diupload
+    $stmt = $pdo->query("SELECT file_path FROM orders WHERE id = 1"); // Sesuaikan dengan id yang sesuai
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Ambil path file dari database
+    $file_url = $row['file_path'];
+
+    // Mengambil object dari bucket
+    $object = $bucket->object('images/' . $row['file_name']); // Menggunakan nama file yang ada di database
+
+    // Buat Signed URL yang berlaku selama 15 menit
+    $signedUrl = $object->signedUrl(new \DateTime('15 minutes'));
+
+    // Tampilkan gambar dengan Signed URL
+    echo "<img src='$signedUrl' alt='Uploaded Image'>";
+} catch (Exception $e) {
+    echo "Error generating signed URL: " . $e->getMessage();
+}
 ?>
