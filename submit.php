@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $object = $bucket->upload(
             fopen($file_tmp, 'r'),
             [
-                'name' => $unique_file_name  
+                'name' => 'images/' . $unique_file_name  
             ]
         );
 
